@@ -1,6 +1,6 @@
 public class weapon {
     String name;
-    boolean type;
+    boolean isRanged;
     int attacks;
     int damage;
     int skill;
@@ -14,15 +14,29 @@ public class weapon {
         damage = 1;
         skill = 1;
         avgDamage = calcAverageDamage(attacks,damage,skill);
+        range = 6;
+        maxRange = 12;
+        isRanged = true;
     }
 
-    public weapon (String title, int atks, int dmg, String dice) {
+    public weapon (String title, int atks, int dmg, String dice, String Range) {
         name = title;
         attacks = atks;
         damage = dmg;
         skill = diceToRank(dice);
         avgDamage = calcAverageDamage(attacks,damage,skill);
+        range = Integer.valueOf(Range.replace("\"", ""));
+        if (range > 1) {
+            isRanged = true;
+            maxRange = range * 2;
+        }
+        else{
+            isRanged = false;
+            maxRange = range;
+        }
+        
     }
+
 
     private float calcAverageDamage(int attacks, int damage, int skill){
         return attacks * damage * chanceMult(skill);
