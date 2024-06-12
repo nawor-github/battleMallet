@@ -8,13 +8,44 @@ public class model {
     String chargeDice;
     ArrayList<weapon> weapons;
     ArrayList<ability> abilities;
+    ArrayList<String> tags;
+    float pointCost;
+    float eHP;
     model (String title, int HP, String Save, int move, ArrayList<weapon> Weapons, ArrayList<ability> Abilities){
         name = title;
         hp = Integer.valueOf(HP);
         save = Save;
         weapons = Weapons;
         abilities = Abilities;
+        eHP = eHP();
     }
+
+    public float eHP (){
+        return hp * effectiveHPMult(save);
+    }
+
+    public float effectiveHPMult (String save){
+        if (save.equals("d4")){
+            return (1+3/4);
+        }
+        else if (save.equals("d6")){
+            return (1+3/6);
+        }
+        else if (save.equals("d8")){
+            return (1+3/8);
+        }
+        else if (save.equals("d10")){
+            return (1+3/10);
+        }
+        else if (save.equals("d12")){
+            return (1+3/12);
+        }
+        else if (save.equals("d20")){
+            return (1+3/20);
+        }
+        return 1;
+    }
+
     public String printOutString(){
         String l = "\n";
         String result = name + l + hp + " HP" + l + save + " save" + l + move + " move" + l + "Abilities:," + l;
