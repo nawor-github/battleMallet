@@ -15,4 +15,13 @@ public class model {
         weapons = Weapons;
         abilities = Abilities;
     }
+    public String printOutString(){
+        String l = "\n";
+        String result = name + l + hp + " HP" + l + save + " save" + l + move + " move" + l + "Abilities:," + l;
+        for (int i = 0; i < weapons.size(); i++){
+            result += weapons.get(i).readOut() + l;
+        }
+        result += "END\n";
+        return result;
+    }
 }

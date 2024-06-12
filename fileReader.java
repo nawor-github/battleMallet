@@ -2,10 +2,9 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class fileReader {
-    public static void main(String[] args) throws IOException{
+    public static void main() throws IOException{
         FileReader in = new FileReader("C:\\Users\\nawor\\OneDrive\\Documents\\gitHub\\battleMallet\\Files\\text.txt");
         BufferedReader r = new BufferedReader(in);
-
         ArrayList<model> models = new ArrayList<model>();
         String line = r.readLine();
         String[] split = line.split("|");

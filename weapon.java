@@ -4,17 +4,19 @@ public class weapon {
     int attacks;
     int damage;
     int skill;
+    String skillDice;
     int range;
     int maxRange;
     float avgDamage;
     
     public weapon () {
-        name = "Mistake weapon";
+        name = "Null weapon";
         attacks = 1;
         damage = 1;
         skill = 1;
         avgDamage = calcAverageDamage(attacks,damage,skill);
         range = 6;
+        skillDice = "d10";
         maxRange = 12;
         isRanged = true;
     }
@@ -24,6 +26,7 @@ public class weapon {
         attacks = atks;
         damage = dmg;
         skill = diceToRank(dice);
+        skillDice = dice;
         avgDamage = calcAverageDamage(attacks,damage,skill);
         range = Range;
         if (range > 1) {
@@ -37,6 +40,14 @@ public class weapon {
         
     }
 
+    public String readOut(){
+        String s = ", ";
+        return name +s+ range +s+ "range" +s+ attacks +s+ "atk" +s+ damage +s+ "dmg" +s+ skillDice +s+ "skill";
+    }
+
+    public String niceReadOut(){
+        return name + "|| Range: " + range + ", " + attacks + " attacks, " + damage + " damage, Skilldice: " + skillDice;
+    }
 
     private float calcAverageDamage(int attacks, int damage, int skill){
         return attacks * damage * chanceMult(skill);
