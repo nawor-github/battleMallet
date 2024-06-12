@@ -20,6 +20,7 @@ public class fileReader {
             String name = "NULLATOR";
             int HP = 0;
             String save = "d10";
+            int move = 0;
             ArrayList<weapon> weapons = new ArrayList<weapon>();
             ArrayList<ability> abilities = new ArrayList<ability>();
             int lineNum = 0;
@@ -35,20 +36,27 @@ public class fileReader {
                     split = line.split(" "); 
                     save = split[0].trim();
                 }
-                else if (lineNum == 3){ //Abilities "Abilties:| ABILITY 1 | ABILITY 2"
-                    split = line.split("|"); 
+                else if (lineNum == 3){ //Move line "6 move"
+                    split = line.split(" "); 
+                    move = Integer.parseInt(split[0].trim());
+                }
+                else if (lineNum == 4){ //Abilities "Abilties:, ABILITY 1, ABILITY 2"
+                    split = line.split(","); 
                     for (int j = 1; j < split.length; j++){
                         abilities.add(new ability(split[j].trim()));
                     }
                 }
-                else{ //WEAPON LINES: "Longbow 12" 2 atk 1 dmg d8 skill
-                    split = line.split(" ");
+                else{ //WEAPON LINES: "Longbow, 12, range, 2, atk, 1, dmg, d8, skill"
+                      //               0        1   2      3       4  5    6   7
+                    split = line.split(",");
+                    weapon temp = new weapon(split[0].trim(), Integer.parseInt(split[1]), Integer.parseInt(split[3]), Integer.parseInt(split[4]), split[6]);
+                    weapons.add(temp);
                 }
                 
                 line = r.readLine();
                 lineNum++;
             }
-            models.add(new model(name, HP, save, weapons, abilities));
+            models.add(new model(name, HP, save, move, weapons, abilities));
         }
         in.close();
     }

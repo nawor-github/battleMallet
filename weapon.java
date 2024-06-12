@@ -19,13 +19,13 @@ public class weapon {
         isRanged = true;
     }
 
-    public weapon (String title, int atks, int dmg, String dice, String Range) {
+    public weapon (String title, int Range, int atks, int dmg, String dice) {
         name = title;
         attacks = atks;
         damage = dmg;
         skill = diceToRank(dice);
         avgDamage = calcAverageDamage(attacks,damage,skill);
-        range = Integer.valueOf(Range.replace("\"", ""));
+        range = Range;
         if (range > 1) {
             isRanged = true;
             maxRange = range * 2;
