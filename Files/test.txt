@@ -1,7 +1,7 @@
 BATTLEMALLET FILE | ROWAN CLARKE | v0.0
 2 ENTRIES
 Goblin Archer
-1 HP
+999 HP
 d10 save
 6 move
 Abilities:,

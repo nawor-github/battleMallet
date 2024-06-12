@@ -14,9 +14,9 @@ public class fileReader {
         System.out.println(line);
         split = line.split(" ");
         int entries = Integer.valueOf(split[0].trim());
-        line = r.readLine();
-        System.out.println(line);
         for (int i = 0; i < entries; i++){
+            line = r.readLine();
+            System.out.println(line);
             String name = "NULLATOR";
             int HP = 0;
             String save = "d10";
