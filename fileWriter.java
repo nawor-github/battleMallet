@@ -3,13 +3,13 @@ import java.util.ArrayList;
 
 public class fileWriter {
     public static void main(String[] args) {
-        String path = "C:\\Users\\nawor\\OneDrive\\Documents\\gitHub\\battleMallet\\File\\writeTest.txt";
+        String path = "C:\\Users\\nawor\\OneDrive\\Documents\\gitHub\\battleMallet\\Files\\writeTest.txt";
         File file = makeFile(path);
         try {
             FileWriter w = new FileWriter(path);
             w.write("BATTLEMALLET FILE | ROWAN CLARKE | v0.0\n");
-            
-            faction TestFaction = fileReader.read("C:\\Users\\nawor\\OneDrive\\Documents\\gitHub\\battleMallet\\Files\\text.txt");
+
+            faction TestFaction = fileReader.read("C:\\Users\\nawor\\OneDrive\\Documents\\gitHub\\battleMallet\\Files\\test.txt");
             String text = TestFaction.models.size() + " ENTRIES\n";
             w.write(text);
             for (int i = 0; i < TestFaction.models.size(); i++){

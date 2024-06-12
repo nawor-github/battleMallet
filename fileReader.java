@@ -7,14 +7,15 @@ public class fileReader {
         FileReader in = new FileReader(path);
         BufferedReader r = new BufferedReader(in);
         String line = r.readLine();
+        System.out.println(line);
         String[] split = line.split("|");
         String version = split[2].trim();
         line = r.readLine();
-        split = line.split(" ");
-        String date = split[1].trim();
-        line = r.readLine();
+        System.out.println(line);
         split = line.split(" ");
         int entries = Integer.valueOf(split[0].trim());
+        line = r.readLine();
+        System.out.println(line);
         for (int i = 0; i < entries; i++){
             String name = "NULLATOR";
             int HP = 0;
@@ -46,13 +47,19 @@ public class fileReader {
                     }
                 }
                 else{ //WEAPON LINES: "Longbow, 12, range, 2, atk, 1, dmg, d8, skill"
-                      //               0        1   2      3       4  5    6   7
+                      //               0        1   2      3  4    5  6    7   8
                     split = line.split(",");
-                    weapon temp = new weapon(split[0].trim(), Integer.parseInt(split[1]), Integer.parseInt(split[3]), Integer.parseInt(split[4]), split[6]);
+                    String tName = split[0].trim();
+                    int tRange = Integer.parseInt(split[1].trim());
+                    int tAtks = Integer.parseInt(split[3].trim());
+                    int tDmg = Integer.parseInt(split[5].trim());
+                    String tDice = split[7].trim();
+                    weapon temp = new weapon(tName, tRange, tAtks, tDmg, tDice);
                     weapons.add(temp);
                 }
                 
                 line = r.readLine();
+                System.out.println(line);
                 lineNum++;
             }
             F.add(new model(name, HP, save, move, weapons, abilities));

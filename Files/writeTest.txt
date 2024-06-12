@@ -3,16 +3,14 @@ BATTLEMALLET FILE | ROWAN CLARKE | v0.0
 Goblin Archer
 1 HP
 d10 save
-6 move
+0 move
 Abilities:,
 Longbow, 12, range, 2, atk, 1, dmg, d8, skill
 Knife, 1, range, 1, atk, 1, dmg, d10, skill
 END
-Goblin Warrior
-2 HP
-d8 save
-12 move
-Abilities:, 
-Javelin, 6, range, 1, atk, 2, dmg, d12, skill
-Club, 1, range, 2, atk, 1, dmg, d6, skill
+NULLATOR
+0 HP
+d10 save
+0 move
+Abilities:,
 END
