@@ -21,7 +21,13 @@ public class fileReader {
             ArrayList<ability> abilities = new ArrayList<ability>();
             int lineNum = 0;
             while (line.equals("END") != true){
-                
+                if (lineNum == 0){
+                    String name = line;
+                }
+                else if (lineNum == 1){
+                    split = line.split(" ");
+                    int HP = Integer.valueOf(split[0].trim());
+                }
                 split = line.split(" ");
                 line = r.readLine();
                 lineNum++;
