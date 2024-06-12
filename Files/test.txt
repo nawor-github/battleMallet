@@ -1,15 +1,17 @@
-BATTLEMALLET FILE - ROWAN CLARKE v0.0
+BATTLEMALLET FILE | ROWAN CLARKE | v0.0
 WRITTEN 12.06.2024
 2 ENTRIES
 Goblin Archer
 1 HP
 d10 save
+Abilities:
 Longbow 12" 2 atk 1 dmg d8 skill
 Knife melee 1 atk 1 dmg d10 skill
 END
 Goblin Warrior
 2 HP
 d8 save
+Abilities: 
 Javelin 6" 1 atk 2 dmg d12 skill
 Club melee 2 atk 1 dmg d6 skill
 END
