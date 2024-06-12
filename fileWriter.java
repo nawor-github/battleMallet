@@ -8,7 +8,8 @@ public class fileWriter {
         try {
             FileWriter w = new FileWriter(path);
             w.write("BATTLEMALLET FILE | ROWAN CLARKE | v0.0\n");
-            faction TestFaction = new faction();
+            
+            faction TestFaction = fileReader.read("C:\\Users\\nawor\\OneDrive\\Documents\\gitHub\\battleMallet\\Files\\text.txt");
             String text = TestFaction.models.size() + " ENTRIES\n";
             w.write(text);
             for (int i = 0; i < TestFaction.models.size(); i++){

@@ -2,10 +2,10 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class fileReader {
-    public static void main() throws IOException{
-        FileReader in = new FileReader("C:\\Users\\nawor\\OneDrive\\Documents\\gitHub\\battleMallet\\Files\\text.txt");
+    public static faction read(String path) throws IOException{
+        faction F = new faction();
+        FileReader in = new FileReader(path);
         BufferedReader r = new BufferedReader(in);
-        ArrayList<model> models = new ArrayList<model>();
         String line = r.readLine();
         String[] split = line.split("|");
         String version = split[2].trim();
@@ -55,9 +55,10 @@ public class fileReader {
                 line = r.readLine();
                 lineNum++;
             }
-            models.add(new model(name, HP, save, move, weapons, abilities));
+            F.add(new model(name, HP, save, move, weapons, abilities));
         }
         in.close();
+        return F;
     }
     
 }
