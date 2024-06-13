@@ -22,13 +22,15 @@ public class fileReader {
                 temp.name = line[1].trim();
             }
             if (line[0].trim().equals("STATLINE")){
-                //STATLINE HP_save_move_type_pointcost 
-                //0        1  2    3    4    5
+                //STATLINE HP_save_move_type 
+                //0        1  2    3    4  
                 temp.hp = Integer.parseInt(line[1].trim());
                 temp.save = line[2].trim();
                 temp.move = Integer.parseInt(line[3].trim());
                 temp.type = line[4].trim(); //Should add some validation to this (unit, elites, hero, terrain, mounted, vehicle, aircraft, warmachine)
-                //pointcost is calculated afterwards
+            }
+            if (line[0].trim().equals("POINTCOST")){
+                //DO nothing and die :D
             }
             if (line[0].trim().equals("ABILITIES")){
                 for (int i = 1; i < line.length; i++){

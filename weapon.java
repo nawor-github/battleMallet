@@ -16,6 +16,7 @@ public class weapon {
     
     public weapon () {
         tags = new ArrayList<String>();
+        pointCost = 0;
     }
 
     public float weaponPointCost(float damageCostMult, float rangeMult){
@@ -28,6 +29,8 @@ public class weapon {
         else{ //Melee Weapon Calcs
             weaponPoint = avgDamage*damageCostMult; //For melee weapons points = (avgDamage x damage Mult)
         }
+        System.out.println(String.format("Weapon %s point cost: %.2f", name, weaponPoint));
+        pointCost = weaponPoint;
         return weaponPoint;
     }
 

@@ -28,6 +28,10 @@ public class model {
 
     model (String title){
         name = title;
+        weapons = new ArrayList<weapon>();
+        abilities = new ArrayList<ability>();
+        tags = new ArrayList<String>();
+        pointCost = new ArrayList<Float>();
     }
 
     model (){
@@ -35,6 +39,7 @@ public class model {
         weapons = new ArrayList<weapon>();
         abilities = new ArrayList<ability>();
         tags = new ArrayList<String>();
+        pointCost = new ArrayList<Float>();
     }
 
     public ArrayList<Float> calcPoint(){
@@ -46,13 +51,14 @@ public class model {
             for (int i = 0; i < weapons.size(); i++){
                 if (weapons.get(i).weaponGroup == group || weapons.get(i).weaponGroup == 0){ //Count only weapons of the current group or in the universal group (0)
                     float weaponPoint = weapons.get(i).weaponPointCost(damageCostMult, rangeMult);
-                    weapons.get(i).pointCost = weaponPoint;
                     groupCost += weaponPoint;
+                    
                 }
             }
             groupCost += move/6; //Temp - think of better way to score movement
             result.add(groupCost);
         }
+        pointCost = result;
         return result;
     }
 
@@ -84,12 +90,29 @@ public class model {
 
     public String printOutString(){
         String l = "\n";
-        String result = String.format("STARTMODEL %s\nSTATLINE %d %s %d %s %.2f HP_save_move_type_pointcost\nABILITIES ", name, hp, save, move, type, pointCost);
-        for (int i = 0; i < abilities.size(); i++){
+        float pC = 0;
+        if (pointCost != null){
+            for (int i = 0; i < pointCost.size(); i++){
+                if (pointCost.get(i) > pC){ //TEMP FIX. Should eventually store all variation pointcosts
+                    pC = pointCost.get(i);
+                    System.out.println(String.format("Pointcost of group %d: %0.2f", i, pointCost.get(i)));
+                }
+            }
+        }
+        else{
+            System.out.println("Pointcost 0 :(");
+        }
+        
+        String result = String.format("STARTMODEL %s\nSTATLINE %d %s %d %s HP_save_move_type\nPOINTCOST ", name, hp, save, move, type);
+        for (int i = 0; i < pointCost.size(); i++){ //Point costs for loadouts
+            result += String.format("%0.2f ", pointCost.get(i));
+        }
+        result += "\nABILITIES ";
+        for (int i = 0; i < abilities.size(); i++){ //Ability list
             result += abilities.get(i).name + " ";
         }
         result += l;
-        for (int i = 0; i < weapons.size(); i++){
+        for (int i = 0; i < weapons.size(); i++){ //Weapons
             result += weapons.get(i).readOut() + l;
         }
         result += "ENDMODEL\n";

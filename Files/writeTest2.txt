@@ -1,7 +1,8 @@
 BATTLEMALLET_FILE ROWAN_CLARKE v0.0
 FACTION Golbinoid_Test_Tribes
 STARTMODEL Goblin_Archer
-STATLINE 1 d10 6 unit nu HP_save_move_type_pointcost
+STATLINE 1 d10 6 unit HP_save_move_type
+POINTCOST 
 ABILITIES Sneaky 
 RANGE Longbow 12 2 1 d8 0.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS 
@@ -9,7 +10,8 @@ MELEE Knife 1 1 1 d10 0.00 1 name_range_attack_damage_skill_pointcost_weaponGrou
 WTAGS Poison 
 ENDMODEL
 STARTMODEL Goblin_Warrior
-STATLINE 2 d10 6 elite nu HP_save_move_type_pointcost
+STATLINE 2 d10 6 elite HP_save_move_type
+POINTCOST 
 ABILITIES 
 RANGE Javelin 6 1 1 d10 0.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Versatile 
@@ -17,7 +19,8 @@ MELEE Battleaxe 1 3 2 d8 0.00 2 name_range_attack_damage_skill_pointcost_weaponG
 WTAGS Cleave Bloodlust 
 ENDMODEL
 STARTMODEL Goblin_Shaman
-STATLINE 5 d8 6 hero nu HP_save_move_type_pointcost
+STATLINE 5 d8 6 hero HP_save_move_type
+POINTCOST 
 ABILITIES Invisibility Lightning_Bolt 
 RANGE Wand 24 1 2 d4 0.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Magic 
