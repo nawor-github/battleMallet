@@ -20,6 +20,23 @@ public class model {
         eHP = eHP();
     }
 
+    public float calcPoint(){
+        float result = eHP;
+        float damageCostMult = 1;
+        float rangeMult = 1/2;
+        for (int i = 0; i < weapons.size(); i++){
+            if (weapons.get(i).isRanged){ //Ranged Weapon Calcs
+                result += (weapons.get(i).avgDamage*damageCostMult) * (weapons.get(i).range*rangeMult);
+            }
+            else{ //Melee Weapon Calcs
+                result += (weapons.get(i).avgDamage*damageCostMult);
+            }
+            
+        }
+        result += move/6;
+        return result;
+    }
+
     public float eHP (){
         return hp * effectiveHPMult(save);
     }
