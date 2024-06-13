@@ -43,16 +43,18 @@ public class model {
     }
 
     public ArrayList<Float> calcPoint(){
+        System.out.println("Calcing points of: " + name);
         ArrayList<Float> result = new ArrayList<Float>();
-        for (int group = 0; group < groupNum; group++){
+        eHP = effectiveHPMult();
+        for (int group = 0; group <= groupNum; group++){
+            System.out.println(String.format("%s eHP: %.2f", name, eHP));
             float groupCost = eHP;
             float damageCostMult = 1;
             float rangeMult = 1/4;
             for (int i = 0; i < weapons.size(); i++){
                 if (weapons.get(i).weaponGroup == group || weapons.get(i).weaponGroup == 0){ //Count only weapons of the current group or in the universal group (0)
-                    float weaponPoint = weapons.get(i).weaponPointCost(damageCostMult, rangeMult);
+                    float weaponPoint = weapons.get(i).calcWeaponPoint(damageCostMult, rangeMult);
                     groupCost += weaponPoint;
-                    
                 }
             }
             groupCost += move/6; //Temp - think of better way to score movement
@@ -63,49 +65,38 @@ public class model {
     }
 
     public float eHP (){
-        return hp * effectiveHPMult(save);
+        return hp * effectiveHPMult();
     }
 
-    public float effectiveHPMult (String save){
+    public float effectiveHPMult (){
         if (save.equals("d4")){
-            return (1+3/4);
+            return (1+(3/4));
         }
         else if (save.equals("d6")){
-            return (1+3/6);
+            return (1+(3/6));
         }
         else if (save.equals("d8")){
-            return (1+3/8);
+            return (1+(3/8));
         }
         else if (save.equals("d10")){
-            return (1+3/10);
+            return (1+(3/10));
         }
         else if (save.equals("d12")){
-            return (1+3/12);
+            return (1+(3/12));
         }
         else if (save.equals("d20")){
-            return (1+3/20);
+            return (1+(3/20));
         }
         return 1;
     }
 
     public String printOutString(){
         String l = "\n";
-        float pC = 0;
-        if (pointCost != null){
-            for (int i = 0; i < pointCost.size(); i++){
-                if (pointCost.get(i) > pC){ //TEMP FIX. Should eventually store all variation pointcosts
-                    pC = pointCost.get(i);
-                    System.out.println(String.format("Pointcost of group %d: %0.2f", i, pointCost.get(i)));
-                }
-            }
-        }
-        else{
-            System.out.println("Pointcost 0 :(");
-        }
+        System.out.println("Printing string");
         
         String result = String.format("STARTMODEL %s\nSTATLINE %d %s %d %s HP_save_move_type\nPOINTCOST ", name, hp, save, move, type);
         for (int i = 0; i < pointCost.size(); i++){ //Point costs for loadouts
-            result += String.format("%0.2f ", pointCost.get(i));
+            result += String.format("%.2f ", pointCost.get(i));
         }
         result += "\nABILITIES ";
         for (int i = 0; i < abilities.size(); i++){ //Ability list

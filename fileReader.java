@@ -59,6 +59,10 @@ public class fileReader {
                 tempW.skillDice = line[5].trim();
                 //Pointcost calculated later, seperately
                 tempW.weaponGroup = Integer.parseInt(line[7].trim());
+                if (tempW.weaponGroup>temp.groupNum){
+                    temp.groupNum = tempW.weaponGroup; //Sets the groupNum to the highest group number
+                }
+                tempW.calcAverageDamage();
                 line = read(r); //Pull up weapon Tags
                 for (int i = 1; i < line.length; i++){
                     tempW.tags.add(line[i]); //Add all tags

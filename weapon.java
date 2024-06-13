@@ -19,15 +19,17 @@ public class weapon {
         pointCost = 0;
     }
 
-    public float weaponPointCost(float damageCostMult, float rangeMult){
+    public float calcWeaponPoint(float damageCostMult, float rangeMult){
         float weaponPoint = 0;
+        System.out.println(String.format("%s average damage: %.2f", name, avgDamage));
+        avgDamage = calcAverageDamage();
         if (isRanged){ //Ranged Weapon Calcs
             //For ranged weapons points = (avgDamage x damage Mult) x //For ranged weapons points = (range x range Mult)
             //Range mult is <1 so ranges of 2-4 will be cheaper than a melee weapon of equivalent avgDamage
             weaponPoint = (avgDamage*damageCostMult) * (range*rangeMult); 
         }
         else{ //Melee Weapon Calcs
-            weaponPoint = avgDamage*damageCostMult; //For melee weapons points = (avgDamage x damage Mult)
+            weaponPoint = avgDamage*damageCostMult * range; //For melee weapons points = (avgDamage x damage Mult) * reach
         }
         System.out.println(String.format("Weapon %s point cost: %.2f", name, weaponPoint));
         pointCost = weaponPoint;
@@ -41,7 +43,7 @@ public class weapon {
         damage = dmg;
         skill = diceToRank(dice);
         skillDice = dice;
-        avgDamage = calcAverageDamage(attacks,damage,skill);
+        avgDamage = calcAverageDamage();
         range = Range;
         tags = t;
         weaponGroup = group;
@@ -68,7 +70,8 @@ public class weapon {
         }
     }
 
-    private float calcAverageDamage(int attacks, int damage, int skill){
+    public float calcAverageDamage(){
+        skill = diceToRank(skillDice);
         return attacks * damage * chanceMult(skill);
     }
 
