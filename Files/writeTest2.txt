@@ -2,29 +2,29 @@ BATTLEMALLET_FILE ROWAN_CLARKE v0.0
 FACTION Golbinoid_Test_Tribes
 STARTMODEL Goblin_Archer
 STATLINE 1 d10 6 unit HP_save_move_type
-POINTCOST 2.00 2.00 
+POINTCOST 2.00 9.00 
 ABILITIES Sneaky 
-RANGE Longbow 12 2 1 d8 0.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
+RANGE Longbow 12 2 1 d8 6.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS 
-MELEE Knife 1 1 1 d10 0.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
+MELEE Knife 1 1 1 d10 1.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Poison 
 ENDMODEL
 STARTMODEL Goblin_Warrior
 STATLINE 2 d10 6 elite HP_save_move_type
-POINTCOST 2.00 2.00 2.00 
+POINTCOST 2.00 3.50 8.00 
 ABILITIES 
-RANGE Javelin 6 1 1 d10 0.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
+RANGE Javelin 6 1 1 d10 1.50 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Versatile 
-MELEE Battleaxe 1 3 2 d8 0.00 2 name_range_attack_damage_skill_pointcost_weaponGroup
+MELEE Battleaxe 1 3 2 d8 6.00 2 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Cleave Bloodlust 
 ENDMODEL
 STARTMODEL Goblin_Shaman
 STATLINE 5 d8 6 hero HP_save_move_type
-POINTCOST 2.00 2.00 
+POINTCOST 2.00 15.00 
 ABILITIES Invisibility Lightning_Bolt 
-RANGE Wand 24 1 2 d4 0.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
+RANGE Wand 24 1 2 d4 12.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Magic 
-MELEE Knife 1 1 1 d10 0.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
+MELEE Knife 1 1 1 d10 1.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Poison 
 ENDMODEL
 ENDFILE

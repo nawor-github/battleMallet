@@ -19,20 +19,22 @@ public class weapon {
         pointCost = 0;
     }
 
-    public float calcWeaponPoint(float damageCostMult, float rangeMult){
+    public float calcWeaponPoint(float damageCostMult, float rangeDiscount){
         float weaponPoint = 0;
-        System.out.println(String.format("%s average damage: %.2f", name, avgDamage));
         avgDamage = calcAverageDamage();
+        System.out.println(String.format("%s average damage: %.2f", name, avgDamage));
         if (isRanged){ //Ranged Weapon Calcs
             //For ranged weapons points = (avgDamage x damage Mult) x //For ranged weapons points = (range x range Mult)
             //Range mult is <1 so ranges of 2-4 will be cheaper than a melee weapon of equivalent avgDamage
-            weaponPoint = (avgDamage*damageCostMult) * (range*rangeMult); 
+            System.out.println(String.format("Damage point %f. Range point %f. Range %d", avgDamage*damageCostMult, range/rangeDiscount, range));
+            weaponPoint = (avgDamage*damageCostMult) * (range/rangeDiscount); 
         }
         else{ //Melee Weapon Calcs
+            System.out.println(String.format("Damage point %f. Range point %f. Range %d", avgDamage*damageCostMult, range/rangeDiscount, range));
             weaponPoint = avgDamage*damageCostMult * range; //For melee weapons points = (avgDamage x damage Mult) * reach
         }
-        System.out.println(String.format("Weapon %s point cost: %.2f", name, weaponPoint));
         pointCost = weaponPoint;
+        System.out.println(String.format("Weapon %s point cost: %.2f", name, pointCost));
         return weaponPoint;
     }
 
@@ -72,7 +74,9 @@ public class weapon {
 
     public float calcAverageDamage(){
         skill = diceToRank(skillDice);
-        return attacks * damage * chanceMult(skill);
+        System.out.println(String.format("Skill value %d from dice %s. Damage %d, attacks %d", skill, skillDice, damage, attacks));
+        //return attacks * damage * chanceMult(skill);
+        return attacks * damage;
     }
 
     private float chanceMult(int skill){
@@ -98,22 +102,22 @@ public class weapon {
     }
 
     private int diceToRank(String dice){
-        if (dice.equals("d4")){
+        if (dice.trim().equals("d4")){
             return 1;
         }
-        else if (dice.equals("d6")){
+        else if (dice.trim().equals("d6")){
             return 2;
         }
-        else if (dice.equals("d8")){
+        else if (dice.trim().equals("d8")){
             return 3;
         }
-        else if (dice.equals("d10")){
+        else if (dice.trim().equals("d10")){
             return 4;
         }
-        else if (dice.equals("d12")){
+        else if (dice.trim().equals("d12")){
             return 5;
         }
-        else if (dice.equals("d20")){
+        else if (dice.trim().equals("d20")){
             return 6;
         }
         return 0;
