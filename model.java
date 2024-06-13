@@ -94,7 +94,7 @@ public class model {
 
     public String printOutString(){
         String l = "\n";
-        String result = String.format("STARTMODEL \n%s\nSTATLINE %d %s %d %s %f HP_save_move_type_pointcost\nABILITIES ", name, hp, save, move, type, pointCost);
+        String result = String.format("STARTMODEL \n%s\nSTATLINE %d %s %d %s %.2f HP_save_move_type_pointcost\nABILITIES ", name, hp, save, move, type, pointCost);
         for (int i = 0; i < abilities.size(); i++){
             result += abilities.get(i).name + " ";
         }
@@ -102,7 +102,7 @@ public class model {
         for (int i = 0; i < weapons.size(); i++){
             result += weapons.get(i).readOut() + l;
         }
-        result += "\nENDMODEL\n";
+        result += "ENDMODEL\n";
         return result;
     }
 }

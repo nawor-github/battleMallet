@@ -11,18 +11,15 @@ public class fileReader {
         String[] line = read(r);
         String version = line[2].trim(); //Extracts header and title
         line = read(r);
-        faction F = new faction();
+        faction F = new faction(version);
         model temp = new model();
         while (line[0].trim().equals("ENDFILE") == false){
             if (line[0].trim().equals("FACTION")){
-                F.name = line[0].trim();
+                F.name = line[1].trim();
             }
             if (line[0].trim().equals("STARTMODEL")){
                 temp = new model();
-                line = read(r);
-                String nLine = r.readLine();
-                System.out.println(line);
-                temp.name = nLine.trim();
+                temp.name = line[1].trim();
             }
             if (line[0].trim().equals("STATLINE")){
                 //STATLINE HP_save_move_type_pointcost 
@@ -30,7 +27,7 @@ public class fileReader {
                 temp.hp = Integer.parseInt(line[1].trim());
                 temp.save = line[2].trim();
                 temp.move = Integer.parseInt(line[3].trim());
-                temp.type = line[4].trim(); //Should definetly add some validation to this (unit, elites, hero, terrain, mounted, vehicle, aircraft, warmachine)
+                temp.type = line[4].trim(); //Should add some validation to this (unit, elites, hero, terrain, mounted, vehicle, aircraft, warmachine)
                 //pointcost is calculated afterwards
             }
             if (line[0].trim().equals("ABILITIES")){
@@ -57,7 +54,7 @@ public class fileReader {
                 tempW.range = Integer.parseInt(line[2].trim());
                 tempW.attacks = Integer.parseInt(line[3].trim());
                 tempW.damage = Integer.parseInt(line[4].trim());
-                tempW.name = line[5].trim();
+                tempW.skillDice = line[5].trim();
                 //Pointcost calculated later, seperately
                 tempW.weaponGroup = Integer.parseInt(line[7].trim());
                 line = read(r); //Pull up weapon Tags

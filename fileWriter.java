@@ -7,10 +7,15 @@ public class fileWriter {
         File file = makeFile(path);
         try {
             FileWriter w = new FileWriter(path);
-            String words = "BATTLEMALLET_FILE ROWAN_CLARKE v0.1\n";
-            w.write("WROTE:" + words);
-
             faction TestFaction = fileReader.read("Files\\test2.txt");
+            String words = "BATTLEMALLET_FILE ROWAN_CLARKE " + TestFaction.version + "\n";
+            w.write(words);
+            System.out.println("WROTE:" + words);
+
+            
+            words = TestFaction.name;
+            w.write("FACTION " + words + "\n");
+            System.out.println("WROTE:" + words);
             for (int i = 0; i < TestFaction.models.size(); i++){
                 words = TestFaction.models.get(i).printOutString();
                 w.write(words);

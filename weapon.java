@@ -37,7 +37,7 @@ public class weapon {
         if (isRanged == true){
             result = "RANGE "; 
         }
-        result += String.format("%s %d %d %d %s %f %d name_range_attack_damage_skill_pointcost_weaponGroup\nWTAGS ", name, range, attacks, damage, skillDice, pointCost, weaponGroup);
+        result += String.format("%s %d %d %d %s %.2f %d name_range_attack_damage_skill_pointcost_weaponGroup\nWTAGS ", name, range, attacks, damage, skillDice, pointCost, weaponGroup);
         for (int i = 0; i < tags.size(); i++){
             result += tags.get(i) + " ";
         }
@@ -46,9 +46,9 @@ public class weapon {
 
     public String niceReadOut(){
         if (isRanged == true){
-            return String.format("%s: Range: %d, %d attacks, %d damage, skill %s, costs %f in variant %d name_range_attack_damage_skill_pointcost_weaponGroup", name, range, attacks, damage, skillDice, pointCost, weaponGroup);
+            return String.format("%s: Range: %d, %d attacks, %d damage, skill %s, costs %.2f in variant %d name_range_attack_damage_skill_pointcost_weaponGroup", name, range, attacks, damage, skillDice, pointCost, weaponGroup);
         } else {
-            return String.format("%s: Reach: %d, %d attacks, %d damage, skill %s, costs %f in variant %d name_range_attack_damage_skill_pointcost_weaponGroup", name, range, attacks, damage, skillDice, pointCost, weaponGroup);
+            return String.format("%s: Reach: %d, %d attacks, %d damage, skill %s, costs %.2f in variant %d name_range_attack_damage_skill_pointcost_weaponGroup", name, range, attacks, damage, skillDice, pointCost, weaponGroup);
         }
     }
 

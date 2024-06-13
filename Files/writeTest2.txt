@@ -1,32 +1,30 @@
-WROTE:BATTLEMALLET_FILE ROWAN_CLARKE v0.1
+BATTLEMALLET_FILE ROWAN_CLARKE v0.1
+FACTION Golbinoid_Test_Tribes
 STARTMODEL 
 STATLINE 1 d10 6 unit 0 HP_save_move_type_pointcost
-STATLINE 0 null 0 null null HP_save_move_type_pointcost
-ABILITIES sneaky 
-RANGE d8 12 2 1 null 0.000000 1 name_range_attack_damage_skill_pointcost_weaponGroup
+STATLINE 0 null 0 null nu HP_save_move_type_pointcost
+ABILITIES Sneaky 
+RANGE Longbow 12 2 1 d8 0.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS 
-MELEE d10 1 1 1 null 0.000000 1 name_range_attack_damage_skill_pointcost_weaponGroup
+MELEE Knife 1 1 1 d10 0.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Poison 
-
 ENDMODEL
 STARTMODEL 
 STATLINE 2 d10 6 elite 0 HP_save_move_type_pointcost
-STATLINE 0 null 0 null null HP_save_move_type_pointcost
+STATLINE 0 null 0 null nu HP_save_move_type_pointcost
 ABILITIES 
-RANGE d10 6 1 1 null 0.000000 1 name_range_attack_damage_skill_pointcost_weaponGroup
+RANGE Javelin 6 1 1 d10 0.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Versatile 
-MELEE d8 1 3 2 null 0.000000 2 name_range_attack_damage_skill_pointcost_weaponGroup
+MELEE Battleaxe 1 3 2 d8 0.00 2 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Cleave Bloodlust 
-
 ENDMODEL
 STARTMODEL 
 STATLINE 5 d8 6 hero 0 HP_save_move_type_pointcost
-STATLINE 0 null 0 null null HP_save_move_type_pointcost
+STATLINE 0 null 0 null nu HP_save_move_type_pointcost
 ABILITIES Invisibility Lightning_Bolt 
-RANGE d4 24 1 2 null 0.000000 1 name_range_attack_damage_skill_pointcost_weaponGroup
+RANGE Wand 24 1 2 d4 0.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Magic 
-MELEE d10 1 1 1 null 0.000000 1 name_range_attack_damage_skill_pointcost_weaponGroup
+MELEE Knife 1 1 1 d10 0.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Poison 
-
 ENDMODEL
 ENDFILE
