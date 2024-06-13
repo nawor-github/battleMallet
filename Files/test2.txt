@@ -1,31 +1,33 @@
-BATTLEMALLET FILE | ROWAN CLARKE | v0.0
-FACTION Golbinoid Test Tribes
-ENTRIES 2
+BATTLEMALLET_FILE ROWAN_CLARKE v0.0
+FACTION Golbinoid_Test_Tribes
 STARTMODEL
 Goblin Archer
-STATLINE 1 d10 6 unit 0 HP-save-move-type-pointcost
+STATLINE 1 d10 6 unit 0 HP_save_move_type_pointcost
 ABILITIES sneaky
 TAGS Goblin
-Longbow 12 2 1 d8 0 range-attack-damage-skill-pointcost
+RANGE Longbow 12 2 1 d8 0 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS 
-Knife 1 1 1 d10 0 range-attack-damage-skill-pointcost
+MELEE Knife 1 1 1 d10 0 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Poison
 ENDMODEL
 STARTMODEL
 Goblin Warrior
-STATLINE 2 d10 6 elite 0 HP-save-move-type-pointcost
+STATLINE 2 d10 6 elite 0 HP_save_move_type_pointcost
 ABILITIES 
 TAGS Goblin
-Javelin 6 1 1 d10 0 range-attack-damage-skill-pointcost
-WTAGS 
-Battleaxe 1 3 2 d8 0 range-attack-damage-skill-pointcost
+RANGE Javelin 6 1 1 d10 0 1 name_range_attack_damage_skill_pointcost_weaponGroup
+WTAGS Versatile
+MELEE Battleaxe 1 3 2 d8 0 2 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Cleave Bloodlust
 ENDMODEL
 STARTMODEL
 Goblin Shaman
-STATLINE 5 d8 6 hero 0 HP-save-move-type-pointcost
-ABILITIES Invisibility Lightning-Bolt
+STATLINE 5 d8 6 hero 0 HP_save_move_type_pointcost
+ABILITIES Invisibility Lightning_Bolt
 TAGS Goblin Spellcaster
-Wand 24 1 2 d4 0 range-attack-damage-skill-pointcost
+RANGE Wand 24 1 2 d4 0 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Magic
+MELEE Knife 1 1 1 d10 0 1 name_range_attack_damage_skill_pointcost_weaponGroup
+WTAGS Poison
 ENDMODEL
+ENDFILE

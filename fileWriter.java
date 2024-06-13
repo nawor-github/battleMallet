@@ -7,14 +7,18 @@ public class fileWriter {
         File file = makeFile(path);
         try {
             FileWriter w = new FileWriter(path);
-            w.write("BATTLEMALLET FILE | ROWAN CLARKE | v0.0\n");
+            String words = "BATTLEMALLET_FILE ROWAN_CLARKE v0.1\n";
+            w.write("WROTE:" + words);
 
             faction TestFaction = fileReader.read("Files\\test2.txt");
-            String text = TestFaction.models.size() + " ENTRIES\n";
-            w.write(text);
             for (int i = 0; i < TestFaction.models.size(); i++){
-                w.write(TestFaction.models.get(i).printOutString());
+                words = TestFaction.models.get(i).printOutString();
+                w.write(words);
+                System.out.println("WROTE:" + words);
             }
+            words = "ENDFILE";
+            w.write(words);
+            System.out.println("WROTE:" + words);
             w.close();
         }
         catch (IOException e) {

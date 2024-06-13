@@ -1,27 +1,25 @@
+import java.util.ArrayList;
 public class weapon {
     String name;
-    boolean isRanged;
+    int range;
     int attacks;
     int damage;
-    int skill;
     String skillDice;
-    int range;
+    int weaponGroup; //Used for a unit with multiple loadouts/variations (Loadout 1, 2, etc). Group 0 is SPECIAL - all loadouts. 
+    ArrayList<String> tags;
+    
+    int skill;
+    boolean isRanged;
     int maxRange;
     float avgDamage;
+    float pointCost;
     
     public weapon () {
-        name = "Null weapon";
-        attacks = 1;
-        damage = 1;
-        skill = 1;
-        avgDamage = calcAverageDamage(attacks,damage,skill);
-        range = 6;
-        skillDice = "d10";
-        maxRange = 12;
-        isRanged = true;
+        tags = new ArrayList<String>();
     }
 
-    public weapon (String title, int Range, int atks, int dmg, String dice) {
+    public weapon (boolean ranged, String title, int Range, int atks, int dmg, String dice, int group, ArrayList<String> t) {
+        isRanged = ranged;
         name = title;
         attacks = atks;
         damage = dmg;
@@ -29,24 +27,29 @@ public class weapon {
         skillDice = dice;
         avgDamage = calcAverageDamage(attacks,damage,skill);
         range = Range;
-        if (range > 1) {
-            isRanged = true;
-            maxRange = range * 2;
-        }
-        else{
-            isRanged = false;
-            maxRange = range;
-        }
-        
+        tags = t;
+        weaponGroup = group;
+        maxRange = range * 2;     
     }
 
     public String readOut(){
-        String s = ", ";
-        return name +s+ range +s+ "range" +s+ attacks +s+ "atk" +s+ damage +s+ "dmg" +s+ skillDice +s+ "skill";
+        String result = "MELEE ";
+        if (isRanged == true){
+            result = "RANGE "; 
+        }
+        result += String.format("%s %d %d %d %s %f %d name_range_attack_damage_skill_pointcost_weaponGroup\nWTAGS ", name, range, attacks, damage, skillDice, pointCost, weaponGroup);
+        for (int i = 0; i < tags.size(); i++){
+            result += tags.get(i) + " ";
+        }
+        return result;
     }
 
     public String niceReadOut(){
-        return name + "|| Range: " + range + ", " + attacks + " attacks, " + damage + " damage, Skilldice: " + skillDice;
+        if (isRanged == true){
+            return String.format("%s: Range: %d, %d attacks, %d damage, skill %s, costs %f in variant %d name_range_attack_damage_skill_pointcost_weaponGroup", name, range, attacks, damage, skillDice, pointCost, weaponGroup);
+        } else {
+            return String.format("%s: Reach: %d, %d attacks, %d damage, skill %s, costs %f in variant %d name_range_attack_damage_skill_pointcost_weaponGroup", name, range, attacks, damage, skillDice, pointCost, weaponGroup);
+        }
     }
 
     private float calcAverageDamage(int attacks, int damage, int skill){

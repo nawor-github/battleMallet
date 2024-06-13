@@ -3,76 +3,97 @@ import java.util.ArrayList;
 
 public class fileReader {
     public static faction read(String path) throws IOException{
-        faction F = new faction();
+        
         FileReader in = new FileReader(path);
         BufferedReader r = new BufferedReader(in);
-        String line = r.readLine();
-        System.out.println(line);
-        String[] split = line.split("|");
-        String version = split[2].trim();
-        line = r.readLine();
-        System.out.println(line);
-        split = line.split(" ");
-        int entries = Integer.valueOf(split[0].trim());
-        for (int i = 0; i < entries; i++){
-            line = r.readLine();
-            System.out.println(line);
-            String name = "NULLATOR";
-            int HP = 0;
-            String save = "d10";
-            int move = 0;
-            ArrayList<weapon> weapons = new ArrayList<weapon>();
-            ArrayList<ability> abilities = new ArrayList<ability>();
-            ArrayList<String> tags = new ArrayList<String>();
-            int lineNum = 0;
-            while (line.equals("END") != true){
-                if (lineNum == 0){ //Name line "Goblin Archer"
-                    name = line;
-                }
-                else if (lineNum == 1){ //HP line "1 HP"
-                    split = line.split(" "); 
-                    HP = Integer.valueOf(split[0].trim());
-                }
-                else if (lineNum == 2){ //Save line "d10 save"
-                    split = line.split(" "); 
-                    save = split[0].trim();
-                }
-                else if (lineNum == 3){ //Move line "6 move"
-                    split = line.split(" "); 
-                    move = Integer.parseInt(split[0].trim());
-                }
-                else if (lineNum == 4){ //Abilities "Abilties:, ABILITY 1, ABILITY 2"
-                    split = line.split(","); 
-                    for (int j = 1; j < split.length; j++){
-                        abilities.add(new ability(split[j].trim()));
-                    }
-                }
-                else if (lineNum == 5){ //Tags "Tags:, Tag 1, Tag 2"
-                    split = line.split(","); 
-                    for (int j = 1; j < split.length; j++){
-                        tags.add(split[j].trim());
-                    }
-                }
-                else{ //WEAPON LINES: "Longbow, 12, range, 2, atk, 1, dmg, d8, skill"
-                      //               0        1   2      3  4    5  6    7   8
-                    split = line.split(",");
-                    String tName = split[0].trim();
-                    int tRange = Integer.parseInt(split[1].trim());
-                    int tAtks = Integer.parseInt(split[3].trim());
-                    int tDmg = Integer.parseInt(split[5].trim());
-                    String tDice = split[7].trim();
-                    weapon temp = new weapon(tName, tRange, tAtks, tDmg, tDice);
-                    weapons.add(temp);
-                }
-                
-                line = r.readLine();
-                System.out.println(line);
-                lineNum++;
+
+        
+        String[] line = read(r);
+        String version = line[2].trim(); //Extracts header and title
+        line = read(r);
+        faction F = new faction();
+        model temp = new model();
+        while (line[0].trim().equals("ENDFILE") == false){
+            if (line[0].trim().equals("FACTION")){
+                F.name = line[0].trim();
             }
-            F.add(new model(name, HP, save, move, weapons, abilities, tags));
+            if (line[0].trim().equals("STARTMODEL")){
+                temp = new model();
+                line = read(r);
+                String nLine = r.readLine();
+                System.out.println(line);
+                temp.name = nLine.trim();
+            }
+            if (line[0].trim().equals("STATLINE")){
+                //STATLINE HP_save_move_type_pointcost 
+                //0        1  2    3    4    5
+                temp.hp = Integer.parseInt(line[1].trim());
+                temp.save = line[2].trim();
+                temp.move = Integer.parseInt(line[3].trim());
+                temp.type = line[4].trim(); //Should definetly add some validation to this (unit, elites, hero, terrain, mounted, vehicle, aircraft, warmachine)
+                //pointcost is calculated afterwards
+            }
+            if (line[0].trim().equals("ABILITIES")){
+                for (int i = 1; i < line.length; i++){
+                    temp.abilities.add(new ability(line[i])); //Add all abilities (points calculated later)
+                }
+            }
+            if (line[0].trim().equals("TAGS")){
+                for (int i = 1; i < line.length; i++){
+                    temp.tags.add(line[i]); //Add all tags
+                }
+            }
+            //RANGED_OR_MELEE name_range_attack_damage_skill_pointcost_weaponGroup
+            //0               1    2     3      4      5     6         7
+            if (line[0].trim().equals("RANGE") || line[0].trim().equals("MELEE")){
+                weapon tempW = new weapon();
+                if (line[0].trim().equals("RANGE")){
+                    tempW.isRanged = true;
+                }
+                else{
+                    tempW.isRanged = false;
+                }
+                tempW.name = line[1].trim();
+                tempW.range = Integer.parseInt(line[2].trim());
+                tempW.attacks = Integer.parseInt(line[3].trim());
+                tempW.damage = Integer.parseInt(line[4].trim());
+                tempW.name = line[5].trim();
+                //Pointcost calculated later, seperately
+                tempW.weaponGroup = Integer.parseInt(line[7].trim());
+                line = read(r); //Pull up weapon Tags
+                for (int i = 1; i < line.length; i++){
+                    tempW.tags.add(line[i]); //Add all tags
+                }
+                temp.weapons.add(tempW); //Commit finished weapon to temp model
+            }
+            if (line[0].trim().equals("ENDMODEL")){
+                F.add(temp); //Commit model to faction
+            }
+            line = read(r); //Next line
         }
         in.close();
         return F;
+    }
+
+    private static String[] read(BufferedReader reader){
+        try{
+            String line = reader.readLine();
+            if (line != null){
+                System.out.println("READ: " + line);
+                String[] split = line.split(" ");
+                return split;
+            }
+            else{
+                System.out.println("READ: NULL");
+                return new String[0];
+            }
+            
+        }
+        catch(IOException e){
+            e.getStackTrace();
+            return new String[0];
+        }
+        
     }
     
 }
