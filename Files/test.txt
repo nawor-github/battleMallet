@@ -1,10 +1,11 @@
 BATTLEMALLET FILE | ROWAN CLARKE | v0.0
-2 ENTRIES
+3 ENTRIES
 Goblin Archer
 999 HP
 d10 save
 6 move
 Abilities:,
+Tags:, unit
 Longbow, 12, range, 2, atk, 1, dmg, d8, skill
 Knife, 1, range, 1, atk, 1, dmg, d10, skill
 END
@@ -12,7 +13,17 @@ Goblin Warrior
 2 HP
 d8 save
 12 move
-Abilities:, 
+Abilities:, rage, cleave
+Tags:, unit
+Javelin, 6, range, 1, atk, 2, dmg, d12, skill
+Club, 1, range, 2, atk, 1, dmg, d6, skill
+END
+Goblin Shaman
+2 HP
+d8 save
+12 move
+Abilities:, magic
+Tags:, hero, spellcaster
 Javelin, 6, range, 1, atk, 2, dmg, d12, skill
 Club, 1, range, 2, atk, 1, dmg, d6, skill
 END

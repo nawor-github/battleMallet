@@ -11,7 +11,7 @@ public class model {
     ArrayList<String> tags;
     float pointCost;
     float eHP;
-    model (String title, int HP, String Save, int move, ArrayList<weapon> Weapons, ArrayList<ability> Abilities){
+    model (String title, int HP, String Save, int move, ArrayList<weapon> Weapons, ArrayList<ability> Abilities, ArrayList<String> tags){
         name = title;
         hp = Integer.valueOf(HP);
         save = Save;

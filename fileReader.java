@@ -23,6 +23,7 @@ public class fileReader {
             int move = 0;
             ArrayList<weapon> weapons = new ArrayList<weapon>();
             ArrayList<ability> abilities = new ArrayList<ability>();
+            ArrayList<String> tags = new ArrayList<String>();
             int lineNum = 0;
             while (line.equals("END") != true){
                 if (lineNum == 0){ //Name line "Goblin Archer"
@@ -46,6 +47,12 @@ public class fileReader {
                         abilities.add(new ability(split[j].trim()));
                     }
                 }
+                else if (lineNum == 5){ //Tags "Tags:, Tag 1, Tag 2"
+                    split = line.split(","); 
+                    for (int j = 1; j < split.length; j++){
+                        tags.add(split[j].trim());
+                    }
+                }
                 else{ //WEAPON LINES: "Longbow, 12, range, 2, atk, 1, dmg, d8, skill"
                       //               0        1   2      3  4    5  6    7   8
                     split = line.split(",");
@@ -62,7 +69,7 @@ public class fileReader {
                 System.out.println(line);
                 lineNum++;
             }
-            F.add(new model(name, HP, save, move, weapons, abilities));
+            F.add(new model(name, HP, save, move, weapons, abilities, tags));
         }
         in.close();
         return F;
