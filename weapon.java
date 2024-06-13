@@ -18,6 +18,19 @@ public class weapon {
         tags = new ArrayList<String>();
     }
 
+    public float weaponPointCost(float damageCostMult, float rangeMult){
+        float weaponPoint = 0;
+        if (isRanged){ //Ranged Weapon Calcs
+            //For ranged weapons points = (avgDamage x damage Mult) x //For ranged weapons points = (range x range Mult)
+            //Range mult is <1 so ranges of 2-4 will be cheaper than a melee weapon of equivalent avgDamage
+            weaponPoint = (avgDamage*damageCostMult) * (range*rangeMult); 
+        }
+        else{ //Melee Weapon Calcs
+            weaponPoint = avgDamage*damageCostMult; //For melee weapons points = (avgDamage x damage Mult)
+        }
+        return weaponPoint;
+    }
+
     public weapon (boolean ranged, String title, int Range, int atks, int dmg, String dice, int group, ArrayList<String> t) {
         isRanged = ranged;
         name = title;

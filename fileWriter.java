@@ -17,6 +17,7 @@ public class fileWriter {
             w.write("FACTION " + words + "\n");
             System.out.println("WROTE:" + words);
             for (int i = 0; i < TestFaction.models.size(); i++){
+                TestFaction.models.get(i).calcPoint();
                 words = TestFaction.models.get(i).printOutString();
                 w.write(words);
                 System.out.println("WROTE:" + words);

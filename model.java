@@ -45,20 +45,10 @@ public class model {
             float rangeMult = 1/4;
             for (int i = 0; i < weapons.size(); i++){
                 if (weapons.get(i).weaponGroup == group || weapons.get(i).weaponGroup == 0){ //Count only weapons of the current group or in the universal group (0)
-                    float weaponPoint = 0;
-                    if (weapons.get(i).isRanged){ //Ranged Weapon Calcs
-                        //For ranged weapons points = (avgDamage x damage Mult) x //For ranged weapons points = (range x range Mult)
-                        //Range mult is <1 so ranges of 2-4 will be cheaper than a melee weapon of equivalent avgDamage
-                        weaponPoint = (weapons.get(i).avgDamage*damageCostMult) * (weapons.get(i).range*rangeMult); 
-                    }
-                    else{ //Melee Weapon Calcs
-                        weaponPoint = (weapons.get(i).avgDamage*damageCostMult); //For melee weapons points = (avgDamage x damage Mult)
-                    }
+                    float weaponPoint = weapons.get(i).weaponPointCost(damageCostMult, rangeMult);
                     weapons.get(i).pointCost = weaponPoint;
                     groupCost += weaponPoint;
                 }
-                
-                
             }
             groupCost += move/6; //Temp - think of better way to score movement
             result.add(groupCost);
@@ -94,7 +84,7 @@ public class model {
 
     public String printOutString(){
         String l = "\n";
-        String result = String.format("STARTMODEL \n%s\nSTATLINE %d %s %d %s %.2f HP_save_move_type_pointcost\nABILITIES ", name, hp, save, move, type, pointCost);
+        String result = String.format("STARTMODEL %s\nSTATLINE %d %s %d %s %.2f HP_save_move_type_pointcost\nABILITIES ", name, hp, save, move, type, pointCost);
         for (int i = 0; i < abilities.size(); i++){
             result += abilities.get(i).name + " ";
         }
