@@ -1,32 +1,35 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class fileEditor {
-    File file;
-    String path;
+public class fileEditor { 
+    String writePath;
+    String readPath;
     FileWriter w;
     FileReader in;
     BufferedReader r;
     boolean verbose;
+    File readFile;
+    File writeFile;
 
     String[] line;
 
-    fileEditor (String p){
-        path = p;
-        file = makeFile(p);
+    fileEditor (String[] args){ // file_path_1 mode(rw/blank = read/write, c = copy) file_path_2 (if copying)
+        readPath = args[0];
+        writePath = args[0];
+        if (args[1].equals("c")){
+            writePath = args[2];
+        }
+        
+        writeFile = makeFile(writePath);
         try {
-            FileWriter w = new FileWriter(path);
-            FileReader in = new FileReader(path);
+            FileWriter w = new FileWriter(writePath);
+            FileReader in = new FileReader(readPath);
             BufferedReader r = new BufferedReader(in);
         }
         catch (IOException e) {
             System.out.println("An error occurred with the file path.");
             e.printStackTrace();
         }
-    }
-
-    public void writeSection (fileSection s){
-
     }
 
     public void findTarget(String target){ //Finds first line of a certain label
@@ -53,8 +56,8 @@ public class fileEditor {
 
     private void resetCursor(){
         try {
-            FileWriter w = new FileWriter(path);
-            FileReader in = new FileReader(path);
+            FileWriter w = new FileWriter(writePath);
+            FileReader in = new FileReader(readPath);
             BufferedReader r = new BufferedReader(in);
         }
         catch (IOException e) {
