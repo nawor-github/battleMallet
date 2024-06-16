@@ -65,11 +65,13 @@ public class weapon {
     }
 
     public String niceReadOut(){
+        String result = "";
         if (isRanged == true){
-            return String.format("%s: Range: %d, %d attacks, %d damage, skill %s, costs %.2f in variant %d name_range_attack_damage_skill_pointcost_weaponGroup", name, range, attacks, damage, skillDice, pointCost, weaponGroup);
+            result = String.format("%s: Range: %d,", name, range);
         } else {
-            return String.format("%s: Reach: %d, %d attacks, %d damage, skill %s, costs %.2f in variant %d name_range_attack_damage_skill_pointcost_weaponGroup", name, range, attacks, damage, skillDice, pointCost, weaponGroup);
+            result = String.format("%s: Reach: %d,", name, range);
         }
+        return result + String.format(" %d attacks, %d damage, skill %s, costs %.2f in variant %d name_range_attack_damage_skill_pointcost_weaponGroup", attacks, damage, skillDice, pointCost, weaponGroup);
     }
 
     public float calcAverageDamage(){

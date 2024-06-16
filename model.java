@@ -7,12 +7,11 @@ public class model {
     int move;
     String type;
     ArrayList<Float> pointCost;
-    int groupNum = 0;
-
     ArrayList<weapon> weapons;
     ArrayList<ability> abilities;
     ArrayList<String> tags;
 
+    int groupNum = 0;
     String chargeDice;
     float eHP;
     model (String title, int HP, String Save, int move, ArrayList<weapon> Weapons, ArrayList<ability> Abilities, ArrayList<String> tags, int gNum){
