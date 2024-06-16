@@ -1,12 +1,12 @@
+import java.io.IOException;
 import java.util.ArrayList;
-public class weapon implements dataStructure{
+public class weapon extends dataStructure {
     String name;
     int range;
     int attacks;
     int damage;
     String skillDice;
     int weaponGroup; //Used for a unit with multiple loadouts/variations (Loadout 1, 2, etc). Group 0 is SPECIAL - all loadouts. 
-    ArrayList<String> tags;
     
     int skill;
     boolean isRanged;
@@ -36,6 +36,10 @@ public class weapon implements dataStructure{
         pointCost = weaponPoint;
         System.out.println(String.format("Weapon %s point cost: %.2f", name, pointCost));
         return weaponPoint;
+    }
+
+    public String getLabel(){
+        return "WEAPON";
     }
 
     public weapon (boolean ranged, String title, int Range, int atks, int dmg, String dice, int group, ArrayList<String> t) {
@@ -123,5 +127,30 @@ public class weapon implements dataStructure{
             return 6;
         }
         return 0;
+    }
+    
+    public weapon readWeapon(fileEditor e, model m){
+        if (e.lineTitled("RANGE")){
+            isRanged = true;
+        }
+        else{
+            isRanged = false;
+        }
+        name = e.line[1].trim();
+        range = Integer.parseInt(e.line[2].trim());
+        attacks = Integer.parseInt(e.line[3].trim());
+        damage = Integer.parseInt(e.line[4].trim());
+        skillDice = e.line[5].trim();
+        //Pointcost calculated later, seperately
+        weaponGroup = Integer.parseInt(e.line[7].trim());
+        if (weaponGroup>m.groupNum){
+            m.groupNum = weaponGroup; //Sets the groupNum to the highest group number
+        }
+        calcAverageDamage();
+        e.getNextLine(); //Pull up weapon Tags
+        for (int i = 1; i < e.line.length; i++){
+            tags.add(e.line[i]); //Add all tags
+        }
+        return this;
     }
 }

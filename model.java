@@ -1,7 +1,7 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class model implements dataStructure{
-    String name;
+public class model extends dataStructure{
     int hp;
     String save;
     int move;
@@ -9,7 +9,7 @@ public class model implements dataStructure{
     ArrayList<Float> pointCost;
     ArrayList<weapon> weapons;
     ArrayList<ability> abilities;
-    ArrayList<String> tags;
+    String label = "STARTMODEL";
 
     int groupNum = 0;
     String chargeDice;
@@ -39,6 +39,10 @@ public class model implements dataStructure{
         abilities = new ArrayList<ability>();
         tags = new ArrayList<String>();
         pointCost = new ArrayList<Float>();
+    }
+
+    public String getLabel(){
+        return "MODEL";
     }
 
     public ArrayList<Float> calcPoint(){
@@ -107,5 +111,53 @@ public class model implements dataStructure{
         }
         result += "ENDMODEL\n";
         return result;
+    }
+
+    public void writeModel(fileEditor e) throws IOException{
+        calcPoint();
+        String words = printOutString();
+        e.w.write(words);
+        if (e.verbose){
+            System.out.println("WROTE:" + words);
+        }  
+    }
+
+    public model readModel(fileEditor e){
+        if (e.lineTitled(label)){
+            name = e.line[1].trim();
+            while (!e.lineTitled("ENDMODEL")){
+                if (e.lineTitled("STATLINE")){
+                    //STATLINE HP_save_move_type 
+                    //0        1  2    3    4  
+                    hp = Integer.parseInt(e.line[1].trim());
+                    save = e.line[2].trim();
+                    move = Integer.parseInt(e.line[3].trim());
+                    type = e.line[4].trim(); //Should add some validation to this (unit, elites, hero, terrain, mounted, vehicle, aircraft, warmachine)
+                }
+                if (e.lineTitled("POINTCOST")){
+                    //DO nothing and die :D
+                }
+                if (e.lineTitled("ABILITIES")){
+                    for (int i = 1; i < e.line.length; i++){
+                        abilities.add(new ability(e.line[i])); //Add all abilities (points calculated later)
+                    }
+                }
+                if (e.lineTitled("TAGS")){
+                    for (int i = 1; i < e.line.length; i++){
+                        tags.add(e.line[i]); //Add all tags
+                    }
+                }
+                if (e.lineTitled("RANGE") || e.lineTitled("MELEE")){
+                    weapon tempW = new weapon();
+                    tempW.readWeapon(e, this);
+                    weapons.add(tempW); //Commit finished weapon to temp model
+                }
+                e.getNextLine();
+            }
+            return this;
+        }
+        System.out.println("CAN'T READ MODEL DATA, NOT RIGHT LINE (BAD FORMAT)");
+        return null;
+        
     }
 }
