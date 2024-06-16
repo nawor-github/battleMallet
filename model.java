@@ -122,7 +122,7 @@ public class model extends dataStructure{
         }  
     }
 
-    public model readModel(fileEditor e){
+    model(fileEditor e){
         if (e.lineTitled(label)){
             name = e.line[1].trim();
             while (!e.lineTitled("ENDMODEL")){
@@ -154,10 +154,7 @@ public class model extends dataStructure{
                 }
                 e.getNextLine();
             }
-            return this;
         }
         System.out.println("CAN'T READ MODEL DATA, NOT RIGHT LINE (BAD FORMAT)");
-        return null;
-        
     }
 }
