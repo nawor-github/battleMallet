@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-public class weapon {
+public class weapon implements dataStructure{
     String name;
     int range;
     int attacks;

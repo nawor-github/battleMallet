@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class model {
+public class model implements dataStructure{
     String name;
     int hp;
     String save;

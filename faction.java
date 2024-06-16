@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class faction {
+public class faction implements dataStructure{
     String name;
     ArrayList<model> models;
     String version;

@@ -25,10 +25,14 @@ public class fileEditor {
         }
     }
 
+    public void writeSection (fileSection s){
+
+    }
+
     public void findTarget(String target){ //Finds first line of a certain label
         resetCursor(); //This is probably hugely inefficient
         while (lineTitled("ENDFILE") == false){
-            getLine();
+            getNextLine();
             if (lineTitled(target)){
                 return;
             }
@@ -38,7 +42,7 @@ public class fileEditor {
     public void findTarget(String targetLabel, String targetName){ //Finds first line of a certain label with a certain first value. e.g. STARTMODEL Golbin_Warchief
         resetCursor(); //This is probably hugely inefficient
         while (lineTitled("ENDFILE") == false){
-            getLine();
+            getNextLine();
             if (lineTitled(targetLabel)){
                 if (line[1].equals(targetName)){
                     return;
@@ -59,15 +63,15 @@ public class fileEditor {
         }
     }
 
-    private boolean lineTitled(String target){
-        String s = getLine()[0];
+    public boolean lineTitled(String target){
+        String s = getNextLine()[0];
         if (s.equals(target)){
             return true;
         }
         return false;
     }
 
-    private String[] getLine(){ //Reads next line and also returns it as a list of Strings
+    public String[] getNextLine(){ //Reads next line and also returns it as a list of Strings
         try{
             String rawLine = r.readLine();
             if (rawLine != null){
