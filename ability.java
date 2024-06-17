@@ -43,6 +43,8 @@ public class ability extends dataStructure {
         return result;
     }
 
+    
+
     public ability(fileEditor e) {
         name = e.line[1].trim();
         while (!e.lineTitled("ENDABILITY")){

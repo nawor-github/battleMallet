@@ -3,25 +3,44 @@ import java.io.*;
 
 public class abilityDict { //Only one abilityDict exists at any one time
     private static abilityDict single_Instance = null;
-    ArrayList<ability> ability; //Array of abilities
+    ArrayList<ability> aDict; //Array of abilities
     String label = "STARTABILITY";
     int entries;
 
     private abilityDict(){
         single_Instance = this;
-        ability = readDict();
+        aDict = readDict();
         entries = 0;
     }
 
     public void updateAbilityDict(fileEditor e){
         getInstance();
-        ability = new ArrayList<ability>();
+        aDict = new ArrayList<ability>();
         while (!e.lineTitled("ENDFILE")){
             ability temp = new ability(e); //This is so fucked up but does seem to work
-            ability.add(temp);
+            aDict.add(temp);
         }
-        entries = ability.size();
+        entries = aDict.size();
     }
+
+    public void writeAbilityDict(fileEditor e){
+        try{
+            String words = "ABILITY_DICT\n";
+            e.w.write(words);
+            if (e.verbose){
+                System.out.println("WROTE:" + words);
+            } 
+            for (int i = 0; i < aDict.size(); i++){
+                aDict.get(i).writeAbility(e);
+                if (e.verbose){
+                    System.out.println("WROTE:" + words);
+                }  
+            }
+        } catch (IOException ex) {
+            //Write error message
+        }      
+    }
+    
 
     public static abilityDict getInstance(){
         if (single_Instance == null){

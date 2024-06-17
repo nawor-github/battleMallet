@@ -46,6 +46,14 @@ public class fileEditor {
         }
     }
 
+    private void writeStart(){
+        
+    }
+
+    private void writeEnd(){
+        
+    }
+
     public void findTarget(String target){ //Finds first line of a certain label
         resetCursor(); //This is probably hugely inefficient
         while (lineTitled("ENDFILE") == false){
