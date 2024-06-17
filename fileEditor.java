@@ -31,14 +31,21 @@ public class fileEditor {
             line = getNextLine();
             if (lineTitled("FACTION")){
                 faction f = new faction(version);
-                f.readWriteFaction(this);
+                f.readFaction(this);
+                writeStart(f);
+                f.writeFaction(this);
+                writeEnd();
             }
             if (lineTitled("ABILITY_DICT")){
                 dict.updateAbilityDict(this);
+                writeStart(dict);
+                dict.writeAbilityDict(this);
+                writeEnd();
             }
             r.close();
             in.close();
             w.close();
+            
         }
         catch (IOException e) {
             System.out.println("An error occurred with the file path.");
@@ -46,12 +53,31 @@ public class fileEditor {
         }
     }
 
-    private void writeStart(){
+    private void writeStart(hasVersion v){
+        String words = "BATTLEMALLET_FILE ROWAN_CLARKE " + v.getVersion() + "\n";
+        try {
+            w.write(words);
+            if (verbose){
+                System.out.println("WROTE:" + words);
+            }  
+        }
+        catch (IOException ex) {
+            //FIX ME!
+        }
         
     }
 
     private void writeEnd(){
-        
+        String words = "ENDFILE";
+        try {
+            w.write(words);
+            if (verbose){
+                System.out.println("WROTE:" + words);
+            }  
+        }
+        catch (IOException ex) {
+            //FIX ME!
+        }
     }
 
     public void findTarget(String target){ //Finds first line of a certain label

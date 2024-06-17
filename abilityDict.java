@@ -1,11 +1,16 @@
 import java.util.ArrayList;
 import java.io.*;
 
-public class abilityDict { //Only one abilityDict exists at any one time
+public class abilityDict  implements hasVersion { //Only one abilityDict exists at any one time
     private static abilityDict single_Instance = null;
     ArrayList<ability> aDict; //Array of abilities
     String label = "STARTABILITY";
     int entries;
+    String version;
+
+    public String getVersion(){
+        return version;
+    }
 
     private abilityDict(){
         single_Instance = this;

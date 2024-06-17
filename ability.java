@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.io.*;
 
-public class ability extends dataStructure {
+public class ability extends dataStructure{
     float cost;
     String label = "ABILITIES";
     ArrayList<String> rules;

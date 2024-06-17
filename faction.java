@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class faction extends dataStructure{
+public class faction extends dataStructure implements hasVersion{
     ArrayList<model> models;
     String version;
     String label = "FACTION";
@@ -9,13 +9,7 @@ public class faction extends dataStructure{
     faction (String v){
         models = new ArrayList<model>();
         version = v;
-    }
-
-    public void readWriteFaction(fileEditor e){
-        readFaction(e);
-        writeFaction(e);
-    }
-            
+    }      
 
     public faction readFaction(fileEditor e){
         if (e.lineTitled(label)){
@@ -26,6 +20,10 @@ public class faction extends dataStructure{
             }
         }
         return this;
+    }
+
+    public String getVersion(){
+        return version;
     }
 
     public String printTitleString(){
