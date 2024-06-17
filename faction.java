@@ -45,8 +45,7 @@ public class faction extends dataStructure{
             }  
         } catch (IOException ex) {
             //Write error message
-        }
-        
+        }      
     }
 
     public void add(model m){

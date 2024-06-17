@@ -26,17 +26,29 @@ public class ability extends dataStructure {
         rules = a.rules;
     }
 
+    public String writeAbility(fileEditor e){
+        if (e.verbose){
+            System.out.println("Writing ability string");
+        }
+        String result = String.format("STARTABILITY %s\n", name);
+        for (int i = 0; i < rules.size(); i++){ //LINES OF RULE TEXT
+            result += String.format("RULES %s\n", rules.get(i));
+        }
+        result += String.format("\nPOINTMOD %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f hp_save_eHP_move_isMelee_range_attack_damage_skill_avgDmg\n", hpMult, saveMult, eHPMult, moveMult, isMeleeMult, rangeMult, attackMult, damageMult, skillMult, avgDmgMult);
+        result += "\nCONFLICTS ";
+        for (int i = 0; i < rules.size(); i++){ //LIST OF CONFLICTS
+            result += String.format("%s ", tags.get(i).trim());
+        }
+        result += "\nENDABILITY\n";
+        return result;
+    }
+
     public ability(fileEditor e) {
         name = e.line[1].trim();
         while (!e.lineTitled("ENDABILITY")){
             if (e.lineTitled("RULES")){
                 String s = fileEditor.removeLabel(e.line);
                 rules.add(s);
-            }
-            if (e.lineTitled("CONFLICTS")){
-                for (int i = 1; i < e.line.length; i++){
-                    tags.add(e.line[i].trim());
-                }
             }
             if (e.lineTitled("POINTMOD")){
                 //POINTMOD hp save eHP move isMelee range attack damage skill avgDmg
@@ -51,6 +63,11 @@ public class ability extends dataStructure {
                 damageMult = Float.parseFloat(e.line[8].trim());
                 skillMult = Float.parseFloat(e.line[9].trim());
                 avgDmgMult = Float.parseFloat(e.line[10].trim());
+            }
+            if (e.lineTitled("CONFLICTS")){
+                for (int i = 1; i < e.line.length; i++){
+                    tags.add(e.line[i].trim());
+                }
             }
             e.getNextLine();
         }
