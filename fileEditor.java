@@ -20,7 +20,7 @@ public class fileEditor {
         if (args[1].equals("c")){
             writePath = args[2];
         }
-        
+        //System.out.println("Preparing to make file");
         writeFile = makeFile(writePath);
         try {
             FileWriter w = new FileWriter(writePath);
@@ -52,6 +52,23 @@ public class fileEditor {
             e.printStackTrace();
         }
     }
+
+    public static File makeFile(String path){
+        try {
+            File f = new File(path);
+            if (f.createNewFile()) {
+                System.out.println("File created: " + f.getName());
+            } 
+            else {
+                System.out.println("File already exists.");
+            } 
+            return f;
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        return null;
+    } 
 
     private void writeStart(hasVersion v){
         String words = "BATTLEMALLET_FILE ROWAN_CLARKE " + v.getVersion() + "\n";
@@ -153,23 +170,4 @@ public class fileEditor {
         }
         
     }
-
-    public static File makeFile(String path){
-        try {
-            File f = new File(path);
-            if (f.createNewFile()) {
-                System.out.println("File created: " + f.getName());
-            } 
-            else {
-                System.out.println("File already exists.");
-            } 
-            return f;
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        return null;
-    } 
-    
-    
 }
