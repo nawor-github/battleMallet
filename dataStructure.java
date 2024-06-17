@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class dataStructure{
     String name;
-    ArrayList<String> tags;
+    ArrayList<String> tags; //Tags in weapon/model, conflicts in ability
     String label = "GENERIC";
     public dataStructure(){
         name = "Generic";

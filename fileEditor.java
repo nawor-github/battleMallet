@@ -68,6 +68,14 @@ public class fileEditor {
         }
     }
 
+    public static String removeLabel (String[] txt) {
+        String s = "";
+        for (int i = 1; i < txt.length; i++){
+            s += txt[i].trim()+" ";
+        }
+        return s;
+    }
+
     private void resetCursor(){
         try {
             FileWriter w = new FileWriter(writePath);
