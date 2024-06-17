@@ -18,16 +18,18 @@ public class ability extends dataStructure{
     ability (String n){
         name = n;
         rules = new ArrayList<>();
+        tags = new ArrayList<>();
     }
     ability (ability a){
         name = a.name;
         cost = a.cost;
         rules = a.rules;
+        tags = a.tags;
     }
 
     public String writeAbility(fileEditor e){
         if (e.verbose){
-            System.out.println("Writing ability string");
+            System.out.println("Writing ability string: "+ name);
         }
         String result = String.format("STARTABILITY %s\n", name);
         for (int i = 0; i < rules.size(); i++){ //LINES OF RULE TEXT
@@ -35,7 +37,7 @@ public class ability extends dataStructure{
         }
         result += String.format("\nPOINTMOD %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f hp_save_eHP_move_isMelee_range_attack_damage_skill_avgDmg\n", hpMult, saveMult, eHPMult, moveMult, isMeleeMult, rangeMult, attackMult, damageMult, skillMult, avgDmgMult);
         result += "\nCONFLICTS ";
-        for (int i = 0; i < rules.size(); i++){ //LIST OF CONFLICTS
+        for (int i = 0; i < tags.size(); i++){ //LIST OF CONFLICTS
             result += String.format("%s ", tags.get(i).trim());
         }
         result += "\nENDABILITY\n";
@@ -45,8 +47,12 @@ public class ability extends dataStructure{
     
 
     public ability(fileEditor e) {
-        e.getNextLine();
+        if (e.line == null){
+            name = "FAILED";
+            return;
+        }
         rules = new ArrayList<>();
+        tags = new ArrayList<>();
         name = e.line[1].trim();
         while (!e.lineTitled("ENDABILITY")){
             if (e.lineTitled("RULES")){

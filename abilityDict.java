@@ -22,12 +22,17 @@ public class abilityDict  implements hasVersion { //Only one abilityDict exists 
         version = e.version;
         getInstance();
         aDict = new ArrayList<ability>();
-        while (!e.lineTitled("ENDFILE")){
+        e.getNextLine();
+        while (e.lineTitled("ENDFILE") == false){
+            
             ability temp = new ability(e); //This is so fucked up but does seem to work
             if (e.verbose){
                 System.out.println("FINISHED READING ABILITY: " + temp.name);
             }
-            aDict.add(temp);
+            if (!temp.name.equals("FAILED")){
+                aDict.add(temp);
+            }
+            e.getNextLine();
         }
         entries = aDict.size();
     }
@@ -40,10 +45,11 @@ public class abilityDict  implements hasVersion { //Only one abilityDict exists 
                 System.out.println("WROTE:" + words);
             } 
             for (int i = 0; i < aDict.size(); i++){
-                aDict.get(i).writeAbility(e);
+                words = aDict.get(i).writeAbility(e);
                 if (e.verbose){
                     System.out.println("WROTE:" + words);
                 }  
+                e.w.write(words);
             }
         } catch (IOException ex) {
             //Write error message

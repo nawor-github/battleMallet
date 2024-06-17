@@ -23,7 +23,7 @@ public class fileEditor implements hasVersion{
             writePath = args[2];
         }
         //System.out.println("Preparing to make file");
-        writeFile = makeFile(writePath);
+        writeFile = getFile(writePath);
         try {
             w = new FileWriter(writePath);
             in = new FileReader(readPath);
@@ -60,6 +60,14 @@ public class fileEditor implements hasVersion{
             System.out.println("An error occurred with the file path.");
             e.printStackTrace();
         }
+    }
+
+    public static File getFile(String path){
+        File f = new File(path);
+        if(f.exists() && !f.isDirectory()) { 
+            return f;
+        }
+        return makeFile(path);
     }
 
     public static File makeFile(String path){

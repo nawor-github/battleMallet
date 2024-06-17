@@ -12,3 +12,4 @@
         - e.g. 2+3 (means 2 points plus 3 x the scalar)
 - Make list builder class that holds factions and numbers of models from factions
 - Make faction/model editor programs
+- Make read/writer support read and write only modes
