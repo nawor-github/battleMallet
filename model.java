@@ -122,7 +122,15 @@ public class model extends dataStructure{
         }  
     }
 
-    model(fileEditor e){
+    model(fileEditor e){ //Functions as model reader
+        weapons = new ArrayList<weapon>();
+        abilities = new ArrayList<ability>();
+        tags = new ArrayList<String>();
+        pointCost = new ArrayList<Float>();
+        hp = 0;
+        save = "d10";
+        move = 0;
+        type = "null";
         if (e.lineTitled(label)){
             name = e.line[1].trim();
             while (!e.lineTitled("ENDMODEL")){
@@ -155,6 +163,18 @@ public class model extends dataStructure{
                 e.getNextLine();
             }
         }
-        System.out.println("CAN'T READ MODEL DATA, NOT RIGHT LINE (BAD FORMAT)");
+        else {
+            try{
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                // recommended because catching InterruptedException clears interrupt flag
+                Thread.currentThread().interrupt();
+                // you probably want to quit if the thread is interrupted
+                return;
+            } 
+            
+            System.out.println("CAN'T READ MODEL DATA, NOT RIGHT LINE (BAD FORMAT)");
+        }
+        
     }
 }

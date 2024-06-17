@@ -16,6 +16,7 @@ public class faction extends dataStructure implements hasVersion{
         if (e.lineTitled(label)){
             name = e.line[1].trim();
             while (!e.lineTitled("ENDFILE")){
+                e.getNextLine();
                 model temp = new model(e); //This is so fucked up but does seem to work
                 models.add(temp);
             }
@@ -35,13 +36,14 @@ public class faction extends dataStructure implements hasVersion{
     public void writeFaction(fileEditor e){
         try{
             String words = printTitleString();
+            if (e.verbose){
+                System.out.println("WROTE:" + words);
+            }  
             e.w.write(words);
             for (int i = 0; i < models.size(); i++){
                 models.get(i).writeModel(e);
             }
-            if (e.verbose){
-                System.out.println("WROTE:" + words);
-            }  
+            
         } catch (IOException ex) {
             //Write error message
         }      
