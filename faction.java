@@ -16,9 +16,10 @@ public class faction extends dataStructure implements hasVersion{
         if (e.lineTitled(label)){
             name = e.line[1].trim();
             while (!e.lineTitled("ENDFILE")){
-                e.getNextLine();
+                
                 model temp = new model(e); //This is so fucked up but does seem to work
                 models.add(temp);
+                e.getNextLine();
             }
         }
         return this;
@@ -41,7 +42,7 @@ public class faction extends dataStructure implements hasVersion{
             }  
             e.w.write(words);
             for (int i = 0; i < models.size(); i++){
-                models.get(i).writeModel(e);
+                models.get(i).writeModel(e); //This writes model :)
             }
             
         } catch (IOException ex) {

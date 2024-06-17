@@ -1,5 +1,10 @@
 BATTLEMALLET_FILE ROWAN_CLARKE v0.0
 FACTION Golbinoid_Test_Tribes
+STARTMODEL Generic
+STATLINE 0 d10 0 null HP_save_move_type
+POINTCOST 1.00 
+ABILITIES 
+ENDMODEL
 STARTMODEL Goblin_Archer
 STATLINE 1 d10 6 unit HP_save_move_type
 POINTCOST 2.00 9.00 
@@ -26,10 +31,5 @@ RANGE Wand 24 1 2 d4 12.00 1 name_range_attack_damage_skill_pointcost_weaponGrou
 WTAGS Magic, Lightning, Chaining 
 MELEE Knife 1 1 1 d10 1.00 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Poison 
-ENDMODEL
-STARTMODEL Generic
-STATLINE 0 d10 0 null HP_save_move_type
-POINTCOST 1.00 
-ABILITIES 
 ENDMODEL
 ENDFILE
