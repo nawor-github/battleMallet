@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.ArrayList;
 
 public class fileEditor implements hasVersion{ 
     String writePath;
@@ -33,13 +32,21 @@ public class fileEditor implements hasVersion{
             version = line[2].trim();
             line = getNextLine();
             if (lineTitled("FACTION")){
+                if (verbose){
+                    System.out.println("FILE TYPE: FACTION");
+                }
                 faction f = new faction(version);
+                
                 f.readFaction(this);
                 writeStart(f);
                 f.writeFaction(this);
                 writeEnd();
             }
             if (lineTitled("ABILITY_DICT")){
+                if (verbose){
+                    System.out.println("FILE TYPE: ABILITY DICTIONARY");
+                }
+                dict = dict.getInstance();
                 dict.updateAbilityDict(this);
                 writeStart(dict);
                 dict.writeAbilityDict(this);
@@ -48,7 +55,6 @@ public class fileEditor implements hasVersion{
             r.close();
             in.close();
             w.close();
-            
         }
         catch (IOException e) {
             System.out.println("An error occurred with the file path.");
@@ -143,7 +149,7 @@ public class fileEditor implements hasVersion{
     }
 
     public boolean lineTitled(String target){
-        String s = getNextLine()[0];
+        String s = line[0].trim();
         if (s.equals(target)){
             return true;
         }

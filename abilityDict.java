@@ -24,6 +24,9 @@ public class abilityDict  implements hasVersion { //Only one abilityDict exists 
         aDict = new ArrayList<ability>();
         while (!e.lineTitled("ENDFILE")){
             ability temp = new ability(e); //This is so fucked up but does seem to work
+            if (e.verbose){
+                System.out.println("FINISHED READING ABILITY: " + temp.name);
+            }
             aDict.add(temp);
         }
         entries = aDict.size();
@@ -57,7 +60,7 @@ public class abilityDict  implements hasVersion { //Only one abilityDict exists 
 
     private ArrayList<ability> readDict(){
         ArrayList<ability> dict = new ArrayList<ability>();
-        String[] args = new String[]{"//programManagerTest.txt", "c", "//AbilityDictTESTCOPY.txt"};
+        String[] args = new String[]{".\\Files\\abilityDict.txt", "c", ".\\Files\\abilityDictTestCopy.txt"};
         fileEditor f = new fileEditor(args); // file_path_1 mode(rw/blank = read/write, c = copy) file_path_2 (if copying)
         return dict;
     }
