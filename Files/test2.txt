@@ -23,10 +23,10 @@ ENDMODEL
 STARTMODEL Goblin_Shaman
 STATLINE 5 d8 6 hero 0 HP_save_move_type
 POINTCOST
-ABILITIES Invisibility Lightning_Bolt
+ABILITIES Invisibility
 TAGS Goblin Spellcaster
 RANGE Wand 24 1 2 d4 0 1 name_range_attack_damage_skill_pointcost_weaponGroup
-WTAGS Magic
+WTAGS Magic, Lightning, Chaining
 MELEE Knife 1 1 1 d10 0 1 name_range_attack_damage_skill_pointcost_weaponGroup
 WTAGS Poison
 ENDMODEL
