@@ -23,9 +23,9 @@ public class fileEditor {
         //System.out.println("Preparing to make file");
         writeFile = makeFile(writePath);
         try {
-            FileWriter w = new FileWriter(writePath);
-            FileReader in = new FileReader(readPath);
-            BufferedReader r = new BufferedReader(in);
+            w = new FileWriter(writePath);
+            in = new FileReader(readPath);
+            r = new BufferedReader(in);
             line = getNextLine(); //Currently we do not look at the main header :)
             String version = line[3].trim();
             line = getNextLine();
