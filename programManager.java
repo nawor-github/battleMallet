@@ -1,5 +1,6 @@
 public class programManager {
     public static void main (String[] args){ 
-        fileEditor f = new fileEditor(args);
+        args = new String[]{"//programManagerTest.txt", "c", "//writeTest3.txt"};
+        fileEditor f = new fileEditor(args); // file_path_1 mode(rw/blank = read/write, c = copy) file_path_2 (if copying)
     }
 }

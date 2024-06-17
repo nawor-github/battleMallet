@@ -2,6 +2,7 @@ BATTLEMALLET_FILE ROWAN_CLARKE v0.0
 ABILITY DICT
 STARTABILITY Regeneration
 RULES Heal D3 wounds at the start of your activation.
+RULES Do not heal if you were damaged by a weapon with the FIRE or ACID keyword since your last activation.
 POINTMOD 1 0 1 0.5 0 0 0 0 0 0 hp_save_eHP_move_isMelee_range_attack_damage_skill_avgDmg
 ENDABILITY
 ENDFILE

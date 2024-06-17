@@ -10,6 +10,7 @@ public class fileEditor {
     boolean verbose;
     File readFile;
     File writeFile;
+    abilityDict dict;
 
     String[] line;
 
@@ -25,6 +26,19 @@ public class fileEditor {
             FileWriter w = new FileWriter(writePath);
             FileReader in = new FileReader(readPath);
             BufferedReader r = new BufferedReader(in);
+            line = getNextLine(); //Currently we do not look at the main header :)
+            String version = line[3].trim();
+            line = getNextLine();
+            if (lineTitled("FACTION")){
+                faction f = new faction(version);
+                f.readWriteFaction(this);
+            }
+            if (lineTitled("ABILITY_DICT")){
+                dict.updateAbilityDict(this);
+            }
+            r.close();
+            in.close();
+            w.close();
         }
         catch (IOException e) {
             System.out.println("An error occurred with the file path.");
