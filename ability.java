@@ -12,4 +12,17 @@ public class ability extends dataStructure {
         name = a.name;
         cost = a.cost;
     }
+
+    public ability(fileEditor e) {
+        String words = "Temp copy from model nonfunctional";
+        try {
+            e.w.write(words);
+        if (e.verbose){
+            System.out.println("WROTE:" + words);
+        }  
+        }
+        catch (IOException ex) {
+            //Do nothing lol fix this later
+        }  
+    }
 }

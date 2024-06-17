@@ -12,7 +12,8 @@ public class faction extends dataStructure{
     }
 
     public void readWriteFaction(fileEditor e){
-
+        readFaction(e);
+        writeFaction(e);
     }
             
 
@@ -20,7 +21,7 @@ public class faction extends dataStructure{
         if (e.lineTitled(label)){
             name = e.line[1].trim();
             while (!e.lineTitled("ENDFILE")){
-                model temp = new model(e);
+                model temp = new model(e); //This is so fucked up but does seem to work
                 models.add(temp);
             }
         }
