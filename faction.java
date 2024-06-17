@@ -12,6 +12,7 @@ public class faction extends dataStructure implements hasVersion{
     }      
 
     public faction readFaction(fileEditor e){
+        version = e.version;
         if (e.lineTitled(label)){
             name = e.line[1].trim();
             while (!e.lineTitled("ENDFILE")){

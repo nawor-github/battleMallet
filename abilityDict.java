@@ -19,6 +19,7 @@ public class abilityDict  implements hasVersion { //Only one abilityDict exists 
     }
 
     public void updateAbilityDict(fileEditor e){
+        version = e.version;
         getInstance();
         aDict = new ArrayList<ability>();
         while (!e.lineTitled("ENDFILE")){

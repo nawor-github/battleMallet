@@ -1,18 +1,21 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class fileEditor { 
+public class fileEditor implements hasVersion{ 
     String writePath;
     String readPath;
     FileWriter w;
     FileReader in;
     BufferedReader r;
-    boolean verbose;
+    boolean verbose = true;
     File readFile;
     File writeFile;
     abilityDict dict;
+    String version;
 
     String[] line;
+
+    
 
     fileEditor (String[] args){ // file_path_1 mode(rw/blank = read/write, c = copy) file_path_2 (if copying)
         readPath = args[0];
@@ -26,8 +29,8 @@ public class fileEditor {
             w = new FileWriter(writePath);
             in = new FileReader(readPath);
             r = new BufferedReader(in);
-            line = getNextLine(); //Currently we do not look at the main header :)
-            String version = line[3].trim();
+            line = getNextLine();
+            version = line[2].trim();
             line = getNextLine();
             if (lineTitled("FACTION")){
                 faction f = new faction(version);
@@ -152,7 +155,7 @@ public class fileEditor {
             String rawLine = r.readLine();
             if (rawLine != null){
                 if (verbose){
-                    System.out.println("READ: " + line);
+                    System.out.println("READ: " + rawLine);
                 }
                 line = rawLine.split(" ");
                 return line;
@@ -169,5 +172,9 @@ public class fileEditor {
             return new String[0];
         }
         
+    }
+
+    public String getVersion(){
+        return version;
     }
 }
