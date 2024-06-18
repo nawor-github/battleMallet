@@ -44,8 +44,6 @@ public class ability extends dataStructure{
         return result;
     }
 
-    
-
     public ability(fileEditor e) {
         if (e.line == null){
             name = "FAILED";

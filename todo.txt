@@ -1,8 +1,7 @@
+//BACKEND
 - Make point calculation function for abilities
 - Redo weapons to have tags (largely damage types) seperate from abilities
     - includes changes to read/write functions to support new layout
-- Make latex layout for factions + statblocks
-- Create ability creation helper that provides some example models and points
 - Make ability point scores scalar (0-1) for easier weighting of different statblocks
     - e.g. range will always be larger than HP pretty much, but having to remember the vibes of each stat when poinitng is hard.
 - Redo abilityDict document to support linear/nonlinear point calcs
@@ -11,5 +10,10 @@
         - e.g. 1^1 (means 1 point to the power of (1 x the scalar))
         - e.g. 2+3 (means 2 points plus 3 x the scalar)
 - Make list builder class that holds factions and numbers of models from factions
-- Make faction/model editor programs
 - Make read/writer support read and write only modes
+
+//FRONTEND
+- Make faction/model editor programs
+- Make latex layout for factions + statblocks
+- Create ability creation helper that provides some example models and points
+- Write rules lol
