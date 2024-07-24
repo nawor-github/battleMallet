@@ -8,7 +8,7 @@ public class scoreFormula {
     public scoreFormula(String s){
         String[] formula = s.split("|");
         scalar = Double.parseDouble(formula[1]);
-        String function = formula[1];
+        function = formula[1];
         constant = Double.parseDouble(formula[2]);
     }
 
@@ -17,7 +17,7 @@ public class scoreFormula {
             return scalar * constant;
         }
         else if (function.equals("+")){ //1 + 2
-            return scalar * constant;
+            return scalar + constant;
         }
         else if (function.equals("^")){
             return Math.pow(scalar, constant);
