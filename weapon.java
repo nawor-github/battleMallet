@@ -7,12 +7,12 @@ public class weapon extends dataStructure {
     int damage;
     String skillDice;
     int weaponGroup; //Used for a unit with multiple loadouts/variations (Loadout 1, 2, etc). Group 0 is SPECIAL - all loadouts. 
-    
     int skill;
     boolean isRanged;
     int maxRange;
     float avgDamage;
     float pointCost;
+    //Arraylist called tags stores abilities
     
     public weapon () {
         tags = new ArrayList<String>();
