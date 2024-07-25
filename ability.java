@@ -4,16 +4,8 @@ public class ability extends dataStructure{
     float cost;
     String label = "ABILITIES";
     ArrayList<String> rules;
-    Float hpMult;
-    Float saveMult;
-    Float eHPMult;
-    Float moveMult;
-    Float isMeleeMult;
-    Float rangeMult;
-    Float attackMult;
-    Float damageMult;
-    Float skillMult;
-    Float avgDmgMult;
+    //F is FORMULA
+    scoreFormula hpF, saveF, eHPF, moveF, isMeleeF, rangeF, attackF, damageF, skillF, avgDmgF;
 
     ability (String n){
         name = n;
@@ -35,7 +27,7 @@ public class ability extends dataStructure{
         for (int i = 0; i < rules.size(); i++){ //LINES OF RULE TEXT
             result += String.format("RULES %s\n", rules.get(i));
         }
-        result += String.format("\nPOINTMOD %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f hp_save_eHP_move_isMelee_range_attack_damage_skill_avgDmg\n", hpMult, saveMult, eHPMult, moveMult, isMeleeMult, rangeMult, attackMult, damageMult, skillMult, avgDmgMult);
+        result += String.format("\nPOINTMOD %s %s %s %s %s %s %s %s %s %s hp_save_eHP_move_isMelee_range_attack_damage_skill_avgDmg\n", hpF.toString(), saveF.toString(), eHPF.toString(), moveF.toString(), isMeleeF.toString(), rangeF.toString(), attackF.toString(), damageF.toString(), skillF.toString(), avgDmgF.toString());
         result += "\nCONFLICTS ";
         for (int i = 0; i < tags.size(); i++){ //LIST OF CONFLICTS
             result += String.format("%s ", tags.get(i).trim());
@@ -67,17 +59,16 @@ public class ability extends dataStructure{
                 }
                 //POINTMOD hp save eHP move isMelee range attack damage skill avgDmg
                 //0        1  2    3   4    5       6     7      8      9     10
-                hpMult = Float.parseFloat(e.line[1].trim());
-                saveMult = Float.parseFloat(e.line[2].trim());
-                eHPMult = Float.parseFloat(e.line[3].trim());
-                moveMult = Float.parseFloat(e.line[4].trim());
-                isMeleeMult = Float.parseFloat(e.line[5].trim());
-                rangeMult = Float.parseFloat(e.line[6].trim());
-                attackMult = Float.parseFloat(e.line[7].trim());
-                damageMult = Float.parseFloat(e.line[8].trim());
-                skillMult = Float.parseFloat(e.line[9].trim());
-                avgDmgMult = Float.parseFloat(e.line[10].trim());
-                
+                hpF = new scoreFormula(e.line[1].trim());
+                saveF = new scoreFormula(e.line[2].trim());
+                eHPF = new scoreFormula(e.line[3].trim());
+                moveF = new scoreFormula(e.line[4].trim());
+                isMeleeF = new scoreFormula(e.line[5].trim());
+                rangeF = new scoreFormula(e.line[6].trim());
+                attackF = new scoreFormula(e.line[7].trim());
+                damageF = new scoreFormula(e.line[8].trim());
+                skillF = new scoreFormula(e.line[9].trim());
+                avgDmgF = new scoreFormula(e.line[10].trim());
             }
             if (e.lineTitled("CONFLICTS")){
                 if (e.verbose){
